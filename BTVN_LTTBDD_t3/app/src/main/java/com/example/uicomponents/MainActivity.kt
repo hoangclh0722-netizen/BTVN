@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.sp
 import java.util.Calendar
 import com.example.uicomponents.ui.theme.UIComponentsAppTheme
 import coil.compose.AsyncImage
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 
 private val Blue = Color(0xFF459BCB)
@@ -190,6 +192,7 @@ private fun ComponentExample(title: String) {
                     .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Crop
             )
+            Text("Ảnh trong app", fontSize = 14.sp, color = Color.DarkGray)
 
             AsyncImage(
                 model = "https://th.bing.com/th/id/OIP.S9d81Hbc79S3lYWgEoPhggAAAA?w=269&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
@@ -199,6 +202,11 @@ private fun ComponentExample(title: String) {
                     .height(180.dp)
                     .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Crop
+            )
+            Text(
+                text = "https://th.bing.com/th/id/OIP.S9d81Hbc79S3lYWgEoPhggAAAA?w=269&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+                fontSize = 10.sp,
+                color = Blue
             )
         }
         "TextField" -> Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -235,7 +243,7 @@ private fun ComponentExample(title: String) {
             OutlinedButton(onClick = { menuOpen = true }) { Text(selected) }
             DropdownMenu(menuOpen, { menuOpen = false }) { listOf("Option 1", "Option 2", "Option 3").forEach { option -> DropdownMenuItem(text = { Text(option) }, onClick = { selected = option; menuOpen = false }) } }
         }
-        "NavigationView" -> Text("←      ${itemLabel(title)}")
+        "NavigationView" -> NavigationPractice()
         "TabBar" -> varTabBar()
         "Menu" -> Box {
             OutlinedButton(onClick = { menuOpen = true }) { Text("Open menu") }
@@ -249,6 +257,75 @@ private fun ComponentExample(title: String) {
     }
 }
 
+@Composable
+private fun NavigationPractice() {
+    var page by remember { mutableStateOf("choose") }
+
+    when (page) {
+        "choose" -> Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text("Choose List Type")
+
+            Button(onClick = { page = "column" }) {
+                Text("Column")
+            }
+
+            Button(onClick = { page = "lazy" }) {
+                Text("LazyColumn (1,000,000 items)")
+            }
+        }
+
+        "column" -> Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            TextButton(onClick = { page = "choose" }) {
+                Text("← Back")
+            }
+
+            repeat(20) { index ->
+                Text(
+                    text = "Item ${index + 1}",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(ItemBlue, RoundedCornerShape(8.dp))
+                        .padding(16.dp)
+                )
+            }
+        }
+
+        else -> Column(Modifier.fillMaxSize()) {
+            TextButton(onClick = { page = "choose" }) {
+                Text("← Back")
+            }
+
+            Text("LazyColumn", Modifier.padding(12.dp))
+
+            LazyColumn(
+                contentPadding = PaddingValues(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(1_000_000) { index ->
+                    Card(Modifier.fillMaxWidth()) {
+                        Row(
+                            Modifier.padding(16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text("Item ${index + 1}")
+                            Text("→")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 @Composable
 private fun varTabBar() {
     var selected by remember { mutableIntStateOf(0) }
