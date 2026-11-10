@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "820417879907",
+    "project_id": "uth-todo-hoang",
+    "storage_bucket": "uth-todo-hoang.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820417879907:android:219292a0b6074a6047fd56",
+        "android_client_info": {
+          "package_name": "com.caolehuyhoang.tuan5"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVmcxTgFZ_lUM8_pHMbw254yGIc0fBdwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
