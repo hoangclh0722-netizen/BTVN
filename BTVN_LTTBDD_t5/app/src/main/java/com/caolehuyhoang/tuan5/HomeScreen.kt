@@ -46,7 +46,7 @@ import java.util.Locale
 fun HomeScreen(vm: TaskViewModel, name: String, onProfile: () -> Unit, onOpen: (Int) -> Unit, onSeeAll: () -> Unit) {
     val state by vm.tasks.collectAsState()
     LoadContent(state, onRetry = vm::loadTasks) { tasks ->
-        val today = tasks.filter { it.localDate == TODAY }
+        val today = tasks.filter { it.localDate == TODAY }.sortedBy { it.time }
         LazyColumn(
             Modifier.statusBarsPadding(),
             contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
@@ -94,7 +94,7 @@ private fun Header(name: String, onProfile: () -> Unit) {
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text("$weekday, ${TODAY.dayOfMonth} tháng ${TODAY.monthValue}", fontSize = 12.sp, color = TextSub)
-            Text("Chào ${name.trim().split(" ").last()}!", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text("Chào $name!", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         }
         Box(Modifier.size(40.dp).background(Color.White, CircleShape), contentAlignment = Alignment.Center) {
             Icon(Icons.Outlined.NotificationsNone, "Thông báo")

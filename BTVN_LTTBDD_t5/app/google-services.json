@@ -12,7 +12,20 @@
           "package_name": "com.caolehuyhoang.tuan5"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "820417879907-382ddqtc3sirl3kqpc5o09qii77r9udc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.caolehuyhoang.tuan5",
+            "certificate_hash": "6cc6034fa62952b25106c162627feeae4025c0e8"
+          }
+        },
+        {
+          "client_id": "820417879907-5bh9vi4p398mgq10gi6kms0a6m0qsul7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBVmcxTgFZ_lUM8_pHMbw254yGIc0fBdwQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820417879907-5bh9vi4p398mgq10gi6kms0a6m0qsul7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

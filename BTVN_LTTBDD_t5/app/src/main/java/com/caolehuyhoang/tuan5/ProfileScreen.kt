@@ -132,7 +132,7 @@ private fun WeekChart(tasks: List<Task>) {
             Text("Việc xong mỗi ngày", fontSize = 12.sp, color = TextSub)
         }
         Spacer(Modifier.height(16.dp))
-        Row(Modifier.fillMaxWidth().height(90.dp), verticalAlignment = Alignment.Bottom) {
+        Row(Modifier.fillMaxWidth().height(110.dp), verticalAlignment = Alignment.Bottom) {
             counts.forEachIndexed { i, count ->
                 val isToday = monday.plusDays(i.toLong()) == TODAY
                 Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
